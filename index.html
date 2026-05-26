@@ -165,18 +165,26 @@
             background: #1a1a1a;
         }
         .fleet-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Forces exactly 4 columns next to each other */
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;       /* Allows cards to drop to the next line */
+    gap: 20px;             /* Handles spacing between cards dynamically */
+    width: 100%;
 }
         .fleet-card {
-            background: var(--bg-dark);
-            border: 1px solid #333;
-            padding: 30px 20px;
-            border-radius: 8px;
-            text-align: center;
-            transition: border-color 0.3s ease;
-        }
+    background: var(--bg-dark);
+    border: 1px solid #333;
+    padding: 30px 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+
+    /* flex-grow: 1   -> Cards grow to fill empty space
+       flex-shrink: 1 -> Cards shrink if space gets tight
+       flex-basis: 250px -> The ideal minimum width before a card wraps
+    */
+    flex: 1 1 250px; 
+}
         .fleet-card:hover {
             border-color: var(--accent-orange);
         }
