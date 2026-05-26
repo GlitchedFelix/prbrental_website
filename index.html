@@ -163,20 +163,38 @@
         /* FLEET SECTION */
         #fleet {
             background: #1a1a1a;
-        }
-        .fleet-grid {
+       .fleet-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Forces exactly 4 columns next to each other */
-    gap: 20px;
+    grid-template-columns: 1fr; /* 1 column on mobile by default */
+    gap: 20px; /* Space between the cards */
+    width: 100%;
+}
+
+/* Tablet layout (Optional but recommended for smoother transitioning) */
+@media (min-width: 48rem) { /* ~768px */
+    .fleet-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    }
+}
+
+/* Desktop layout: Strict 4 columns, no wrapping */
+@media (min-width: 64rem) { /* ~1024px */
+    .fleet-grid {
+        grid-template-columns: repeat(4, 1fr); /* Exactly 4 equal columns */
+    }
 }
         .fleet-card {
-            background: var(--bg-dark);
-            border: 1px solid #333;
-            padding: 30px 20px;
-            border-radius: 8px;
-            text-align: center;
-            transition: border-color 0.3s ease;
-        }
+    background: var(--bg-dark);
+    border: 1px solid #333;
+    padding: 30px 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: border-color 0.3s ease;
+    
+    /* Ensures cards don't blow past their grid cell boundaries */
+    width: 100%; 
+    box-sizing: border-box; 
+}
         .fleet-card:hover {
             border-color: var(--accent-orange);
         }
